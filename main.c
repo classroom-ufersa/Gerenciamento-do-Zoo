@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "TAD-animal/animal.h"
 
 void exibir_menu(void) {
     printf(
