@@ -18,6 +18,7 @@ void exibir_menu(void) {
 
 int main() {
     int opcao = 0;
+    char arq_animal[] = "dados/animais.txt";
 
     while(opcao != 8){
         exibir_menu();
@@ -30,6 +31,7 @@ int main() {
             case 2:
                 break;
             case 3:
+                adiciona_animal(arq_animal);
                 break;
             case 4:
                 break;
