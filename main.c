@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include "TAD-animal/animal.h"
 
-struct animal {
-    char nome[50];
-    char especie[50];
-    int idade;
-    Animal * prox_elemento;
-};
-
 void exibir_menu(void) {
     printf(
         "======= MENU =======\n"
