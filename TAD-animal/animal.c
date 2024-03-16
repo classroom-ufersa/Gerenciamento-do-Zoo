@@ -64,20 +64,20 @@ void insere_dados_arquivo(char nome_arquivo[], Animal * lista) {
         printf("Erro: Falha ao tentar abrir arquivo '%s' na funcao 'insere_dados_arquivo'.\n", nome_arquivo);
         exit(1);
     }
-    Animal * contador;
-    for(contador = lista; contador != NULL; contador = contador->prox_elemento){
-        fprintf(arquivo, "%s %s %d\n", contador->nome, contador->especie, contador->idade);
+    while(lista != NULL) {
+        fprintf(arquivo, "%s %s %d\n", lista->nome, lista->especie, lista->idade);
+        lista = lista->prox_elemento;
     }
+
     fclose(arquivo);
 }
 
 void libera_lista(Animal * lista) {
     Animal * elemento_atual;
-    Animal * contador = lista;
 
-    while(contador != NULL) {
-        elemento_atual = contador;
-        contador = contador->prox_elemento;
+    while(lista != NULL) {
+        elemento_atual = lista;
+        lista = lista->prox_elemento;
         free(elemento_atual);
     }
 }
@@ -89,18 +89,56 @@ void adiciona_animal(char nome_arquivo[]) {
     int idade;
 
     lista = carrega_dados_arquivo(nome_arquivo);
-    printf("-------------------------\n");
-    printf("Informe o nome do animal:\n");
+    printf("---- Insercao de animal ----\n");
+    printf("# Informe o nome do animal:\n");
     scanf(" %49s", nome);
-    printf("Informe a especie do animal:\n");
+    printf("# Informe a especie do animal:\n");
     scanf(" %49s", especie);
-    printf("Informe a idade do animal:\n");
+    printf("# Informe a idade do animal:\n");
     scanf("%d", &idade);
-    printf("-------------------------\n");
+    printf("----------------------------\n");
 
     lista = insere_elemento_lista(lista, nome, especie, idade);
     insere_dados_arquivo(nome_arquivo, lista);
     libera_lista(lista);
     
-    printf("Insercao concluida!\n");
+    printf("* Insercao concluida! *\n");
+}
+
+Animal * busca_animal(Animal * lista, char nome_animal[]) {
+    while(lista != NULL) {
+        if(strcmp(lista->nome, nome_animal) == 0) {
+            return lista;
+        }
+        lista = lista->prox_elemento;
+    }
+    return lista;
+}
+
+int remove_animal(char nome_arquivo[], char nome_animal[]) {
+    Animal * lista = carrega_dados_arquivo(nome_arquivo);
+    Animal * elemento_atual = lista;
+    Animal * elemento_remover;
+    int removido = 0;
+
+    if(strcmp(lista->nome, nome_animal) == 0){
+        elemento_remover = lista;
+        lista = lista->prox_elemento;
+        free(elemento_remover);
+        removido = 1;
+    } else {
+        while(elemento_atual->prox_elemento != NULL) {
+            if(strcmp(elemento_atual->prox_elemento->nome, nome_animal) == 0) {
+                elemento_remover = elemento_atual->prox_elemento;
+                elemento_atual->prox_elemento = elemento_remover->prox_elemento;
+                free(elemento_remover);
+                removido = 1;
+                break;
+            }
+            elemento_atual = elemento_atual->prox_elemento;
+        }
+    }
+    insere_dados_arquivo(nome_arquivo, lista);
+    libera_lista(lista);
+    return removido;
 }

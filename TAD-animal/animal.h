@@ -19,3 +19,11 @@ void libera_lista(Animal * lista);
 
 /* Função que adiciona os dados de um novo animal em arquivo */
 void adiciona_animal(char nome_arquivo[]);
+
+/* Função que busca um animal, especificado pelo nome, em uma lista e devolve o endereço
+ do elemento que o contém, se o animal não for encontrado retorna NULL */
+Animal * busca_animal(Animal * lista, char nome_animal[]);
+
+/* Função que remove os dados de um animal, especificado pelo nome, de um arquivo. Retorna 1 
+ para removido e 0 para animal não encontrado */
+int remove_animal(char nome_arquivo[], char nome_animal[]);
