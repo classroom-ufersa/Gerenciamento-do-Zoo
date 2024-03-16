@@ -23,7 +23,7 @@ void exibir_menu(void) {
     );
 }
 
-int main() {
+int main(void) {
     int opcao = 0;
     char arq_animal[] = "dados/animais.txt";
     char nome_animal[50];
@@ -53,22 +53,23 @@ int main() {
                 }
                 break;
             case 5:
+                printf("# Informe o nome do animal para editar os seus dados:\n");
+                scanf(" %49s", nome_animal);
+                edita_dados_animal(arq_animal, nome_animal);
                 break;
             case 6:
                 printf("# Informe o nome do animal para realizar a busca:\n");
                 scanf(" %49s", nome_animal);
-                lista = carrega_dados_arquivo(arq_animal);
+                lista = carrega_animais_arquivo(arq_animal);
                 resultado_busca = busca_animal(lista, nome_animal);
                 if(resultado_busca != NULL) {
                     printf("--- Animal buscado ---\n");
-                    printf("Nome: %s\n", resultado_busca->nome);
-                    printf("Especie: %s\n", resultado_busca->especie);
-                    printf("Idade: %d\n", resultado_busca->idade);
+                    imprime_dados_animal(resultado_busca);
                     printf("----------------------\n");
                 } else {
                     printf("* Animal nao encontrado! *\n");
                 }
-                libera_lista(lista);
+                libera_lista_animais(lista);
                 break;
             case 7:
                 break;
