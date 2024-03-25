@@ -30,6 +30,7 @@ int main(void) {
 
         switch(opcao) {
             case 1:
+                adiciona_recinto();
                 break;
             case 2:
                 break;
