@@ -43,7 +43,7 @@ Animal * carrega_animais_arquivo(char nome_arquivo[]) {
     Animal * lista = cria_lista_animais();
     FILE * arquivo = fopen(nome_arquivo, "r");
     if(arquivo == NULL) {
-        printf("Erro: Falha ao tentar abrir arquivo na funcao 'carrega_animais_arquivo'.\n");
+        printf("Erro: Falha ao tentar abrir arquivo '%s' na funcao 'carrega_animais_arquivo'.\n", nome_arquivo);
         exit(1);
     }
     char nome[50];
@@ -126,25 +126,27 @@ int remove_animal(char nome_arquivo[], char nome_animal[]) {
     Animal * elemento_remover;
     int removido = 0;
 
-    if(strcmp(lista->nome, nome_animal) == 0){
-        elemento_remover = lista;
-        lista = lista->prox_elemento;
-        free(elemento_remover);
-        removido = 1;
-    } else {
-        while(elemento_atual->prox_elemento != NULL) {
-            if(strcmp(elemento_atual->prox_elemento->nome, nome_animal) == 0) {
-                elemento_remover = elemento_atual->prox_elemento;
-                elemento_atual->prox_elemento = elemento_remover->prox_elemento;
-                free(elemento_remover);
-                removido = 1;
-                break;
+    if(lista != NULL) {
+        if(strcmp(lista->nome, nome_animal) == 0){
+            elemento_remover = lista;
+            lista = lista->prox_elemento;
+            free(elemento_remover);
+            removido = 1;
+        } else {
+            while(elemento_atual->prox_elemento != NULL) {
+                if(strcmp(elemento_atual->prox_elemento->nome, nome_animal) == 0) {
+                    elemento_remover = elemento_atual->prox_elemento;
+                    elemento_atual->prox_elemento = elemento_remover->prox_elemento;
+                    free(elemento_remover);
+                    removido = 1;
+                    break;
+                }
+                elemento_atual = elemento_atual->prox_elemento;
             }
-            elemento_atual = elemento_atual->prox_elemento;
         }
+        insere_animais_arquivo(nome_arquivo, lista);
+        libera_lista_animais(lista);
     }
-    insere_animais_arquivo(nome_arquivo, lista);
-    libera_lista_animais(lista);
     return removido;
 }
 
