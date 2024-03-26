@@ -18,7 +18,7 @@ Recinto * cria_lista_recinto(void) {
 Recinto * insere_recinto_lista(Recinto * lista, int id, int capacidade, char horario[], char animaispre[]) {
     Recinto * novo_elemento = (Recinto *) malloc(sizeof(Recinto));
     if(novo_elemento == NULL) {
-        printf("Falha na alocacao de memoria.\n");
+        printf("Falha na alocacao de memoria na funcao 'insere_recinto_lista'.\n");
         exit(1);
     }
     novo_elemento->id = id;
@@ -45,7 +45,7 @@ Recinto * carrega_recintos_arquivo(char arquivo_nome[]){
     Recinto * lista = cria_lista_recinto();
     FILE * arquivo = fopen(arquivo_nome, "r");
     if(arquivo == NULL){
-        printf("Erro na tentativa de abrir\n");
+        printf("Erro na tentativa de abrir arquivo na funcao 'carrega_recintos_arquivo'\n");
         exit(1);
     }
     int id;
@@ -64,7 +64,7 @@ Recinto * carrega_recintos_arquivo(char arquivo_nome[]){
 void insere_recintos_arquivo(char arquivo_nome[], Recinto * lista){
    FILE * arquivo = fopen(arquivo_nome, "w"); 
    if(arquivo == NULL) {
-        printf("Falha ao tentar abrir arquivo '%s' na funcao 'insere_recintos_arquivo'.\n", arquivo_nome);
+        printf("Falha ao tentar abrir arquivo na funcao 'insere_recintos_arquivo'.\n");
         exit(1);
     }
     while(lista != NULL) {
