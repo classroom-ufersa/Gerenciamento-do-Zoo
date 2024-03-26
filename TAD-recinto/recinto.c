@@ -43,7 +43,7 @@ Recinto * insere_recinto_lista(Recinto * lista, int id, int capacidade, char hor
 
 Recinto * carrega_recintos_arquivo(char arquivo_nome[]){
     Recinto * lista = cria_lista_recinto();
-    FILE * arquivo = fopen(arquivo_nome, "r");
+    FILE * arquivo = fopen(arquivo_nome, "a");
     if(arquivo == NULL){
         printf("Erro na tentativa de abrir arquivo na funcao 'carrega_recintos_arquivo'\n");
         exit(1);
