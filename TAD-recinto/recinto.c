@@ -40,3 +40,47 @@ Recinto * insere_recinto_lista(Recinto * lista, int id, int capacidade, char hor
 
     return lista;
 }
+
+Recinto * carrega_recintos_arquivo(char arquivo_nome[]){
+    Recinto * lista = cria_lista_recinto();
+    FILE * arquivo = fopen(arquivo_nome, "r");
+    if(arquivo == NULL){
+        printf("Erro na tentativa de abrir\n");
+        exit(1);
+    }
+    int id;
+    int capacidade;
+    char horario[50];
+    char animaispre[50];
+
+    while(fscanf(arquivo, "%d %d %49s %49s", &id, &capacidade, horario, animaispre) == 4) {
+        lista = insere_recinto_lista(lista, id, capacidade, horario, animaispre);
+    }
+
+    fclose(arquivo);
+    return lista;
+}
+
+void insere_recintos_arquivo(char arquivo_nome[], Recinto * lista){
+   FILE * arquivo = fopen(arquivo_nome, "w"); 
+   if(arquivo == NULL) {
+        printf("Falha ao tentar abrir arquivo '%s' na funcao 'insere_recintos_arquivo'.\n", arquivo_nome);
+        exit(1);
+    }
+    while(lista != NULL) {
+        fprintf(arquivo, "%d %d %s %s\n", lista->id, lista->capacidade, lista->horario, lista->animaispre);
+        lista = lista->pro_elemento;
+    }
+
+    fclose(arquivo);
+}
+
+void libera_lista_recintos(Recinto * lista) {
+    Recinto * elemento_atual;
+
+    while(lista != NULL) {
+        elemento_atual = lista;
+        lista = lista->pro_elemento;
+        free(elemento_atual);
+    }
+}

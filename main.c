@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "TAD-animal/animal.h"
+#include "TAD-recinto/recinto.h"
 
 void exibir_menu(void) {
     printf(
@@ -18,6 +19,7 @@ void exibir_menu(void) {
 
 int main(void) {
     int opcao = 0;
+    char arq_recinto[] = "dados/recintos.txt";
     char arq_animal[] = "dados/animais.txt";
     char nome_animal[50];
     Animal * lista;
@@ -30,7 +32,7 @@ int main(void) {
 
         switch(opcao) {
             case 1:
-                adiciona_recinto();
+                adiciona_recinto(arq_recinto);
                 break;
             case 2:
                 break;
