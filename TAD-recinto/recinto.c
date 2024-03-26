@@ -84,3 +84,27 @@ void libera_lista_recintos(Recinto * lista) {
         free(elemento_atual);
     }
 }
+
+void adiciona_recinto(char arquivo_nome[]){
+    Recinto * lista = carrega_recinto_arquivo(arquivo_nome);
+    int id;
+    int capacidade;
+    char horario[50];
+    char animaispre[50];
+
+    printf("----Adicione o recinto----\n");
+    printf("Informe a identificacao do recinto:\n ex:456\n");
+    scanf("%d", &id);
+    printf("Informe a capacidade maxima de animais nesse recinto:\n ex:80");
+    scanf("%d", &capacidade);
+    printf("Informe o horario de visitas do recinto:\n ex: dez da manha as seis da tarde\n");
+    scanf("%s", horario);
+    printf("Informe quantos animais estão presentes no recinto e qual a sua especie:\n ex:seis ursos\n");
+    scanf("%s", animaispre);
+
+    lista = insere_recinto_lista( lista, id, capacidade, horario, animaispre);
+    insere_recintos_arquivo (arquivo_nome, lista);
+    libera_lista_recintos(lista);
+    printf("Recinto adicionado com sucesso!\n");
+    printf("-------------------------------\n");
+}
