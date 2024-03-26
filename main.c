@@ -24,10 +24,11 @@ int main(void) {
     char nome_animal[50];
     Animal * lista;
     Animal * resultado_busca;
+    //Recinto * listar;
 
     while(opcao != 8){
         exibir_menu();
-        printf("# Escolha uma opcao do menu: ");
+        printf("==Escolha uma opcao do nosso menu:== ");
         scanf("%d", &opcao);
 
         switch(opcao) {
@@ -70,7 +71,7 @@ int main(void) {
             case 7:
                 break;
             case 8:
-                printf("Programa encerrado.\n");
+                printf("Voce saiu do nosso gerenciamento de zoologico, volte sempre!\n");
                 break;
             default:
                 printf("* Opcao invalida! *\n");
