@@ -127,3 +127,33 @@ void imprime_dados_recinto(Recinto * lista) {
     }
     printf("============================\n");
 }
+
+int remove_recinto(char arquivo_nome[], int id_recinto) {
+    Recinto * lista = carrega_recintos_arquivo(arquivo_nome);
+    Recinto * elemento_atual = lista;
+    Recinto * elemento_remover;
+    int removido = 0;
+
+    if(lista != NULL) {
+        if(lista->id == id_recinto) {
+            elemento_remover = lista;
+            lista = lista->prox_elemento;
+            free(elemento_remover);
+            removido = 1;
+        } else {
+            while(elemento_atual->prox_elemento != NULL) {
+                if(elemento_atual->prox_elemento->id == id_recinto) {
+                    elemento_remover = elemento_atual->prox_elemento;
+                    elemento_atual->prox_elemento = elemento_remover->prox_elemento;
+                    free(elemento_remover);
+                    removido = 1;
+                    break;
+                }
+                elemento_atual = elemento_atual->prox_elemento;
+            }
+        }
+        insere_recintos_arquivo(arquivo_nome, lista);
+        libera_lista_recintos(lista);
+    }
+    return removido;
+}

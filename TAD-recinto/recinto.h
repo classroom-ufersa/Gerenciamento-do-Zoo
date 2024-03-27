@@ -21,3 +21,7 @@ void adiciona_recinto(char arquivo_nome[]);
 
 /*Função responsável por imprimir os dados dos recintos*/
 void imprime_dados_recinto(Recinto * lista);
+
+/* Função que remove os dados de um recinto, especificado pelo id, de um arquivo. Retorna 1 
+ para removido e 0 para animal não encontrado */
+int remove_recinto(char arquivo_nome[], int id_recinto);

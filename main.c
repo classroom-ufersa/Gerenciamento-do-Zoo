@@ -22,6 +22,7 @@ int main(void) {
     char arq_recinto[] = "dados/recintos.txt";
     char arq_animal[] = "dados/animais.txt";
     char nome_animal[50];
+    int id_recinto;
     Animal * lista_animais;
     Animal * resultado_busca;
     Recinto * lista_recintos;
@@ -36,6 +37,13 @@ int main(void) {
                 adiciona_recinto(arq_recinto);
                 break;
             case 2:
+                 printf("# Informe o nome do animal que sera removido:\n");
+                scanf(" %d", id_recinto);
+                if(remove_recinto(arq_recinto, id_recinto ) == 1) {
+                    printf("* Recinto removido com sucesso! *\n");
+                } else {
+                    printf("* Recinto nao encontrado. Tente novamente! *\n");
+                }
                 break;
             case 3:
                 adiciona_animal(arq_animal);
@@ -44,9 +52,9 @@ int main(void) {
                 printf("# Informe o nome do animal que sera removido:\n");
                 scanf(" %49s", nome_animal);
                 if(remove_animal(arq_animal, nome_animal) == 1) {
-                    printf("* Animal removido! *\n");
+                    printf("* Animal removido com sucesso! *\n");
                 } else {
-                    printf("* Animal nao encontrado! *\n");
+                    printf("* Animal nao encontrado. Tente novamente! *\n");
                 }
                 break;
             case 5:
@@ -64,7 +72,7 @@ int main(void) {
                     imprime_dados_animal(resultado_busca);
                     printf("----------------------\n");
                 } else {
-                    printf("* Animal nao encontrado! *\n");
+                    printf("* Animal nao encontrado. Tente novamente! *\n");
                 }
                 libera_lista_animais(lista_animais);
                 break;
