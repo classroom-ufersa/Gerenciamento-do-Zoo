@@ -22,13 +22,13 @@ int main(void) {
     char arq_recinto[] = "dados/recintos.txt";
     char arq_animal[] = "dados/animais.txt";
     char nome_animal[50];
-    Animal * lista;
+    Animal * lista_animais;
     Animal * resultado_busca;
-    //Recinto * listar;
+    Recinto * lista_recintos;
 
     while(opcao != 8){
         exibir_menu();
-        printf("==Escolha uma opcao do nosso menu:== ");
+        printf("# Escolha uma opcao do nosso menu: ");
         scanf("%d", &opcao);
 
         switch(opcao) {
@@ -57,8 +57,8 @@ int main(void) {
             case 6:
                 printf("# Informe o nome do animal para realizar a busca:\n");
                 scanf(" %49s", nome_animal);
-                lista = carrega_animais_arquivo(arq_animal);
-                resultado_busca = busca_animal(lista, nome_animal);
+                lista_animais = carrega_animais_arquivo(arq_animal);
+                resultado_busca = busca_animal(lista_animais, nome_animal);
                 if(resultado_busca != NULL) {
                     printf("--- Animal buscado ---\n");
                     imprime_dados_animal(resultado_busca);
@@ -66,12 +66,15 @@ int main(void) {
                 } else {
                     printf("* Animal nao encontrado! *\n");
                 }
-                libera_lista_animais(lista);
+                libera_lista_animais(lista_animais);
                 break;
             case 7:
+                lista_recintos = carrega_recintos_arquivo(arq_recinto);
+                imprime_dados_recinto(lista_recintos);
+                libera_lista_recintos(lista_recintos);
                 break;
             case 8:
-                printf("Voce saiu do nosso gerenciamento de zoologico, volte sempre!\n");
+                printf("Programa de gerenciamento de zoologico encerrado!\n");
                 break;
             default:
                 printf("* Opcao invalida! *\n");
