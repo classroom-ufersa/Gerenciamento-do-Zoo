@@ -65,7 +65,7 @@ void insere_animais_arquivo(char nome_arquivo[], Animal * lista) {
         exit(1);
     }
     while(lista != NULL) {
-        fprintf(arquivo, "%s\t%s\t%d\n", lista->nome, lista->especie, lista->idade);
+        fprintf(arquivo, "%s %s %d\n", lista->nome, lista->especie, lista->idade);
         lista = lista->prox_elemento;
     }
 

@@ -37,9 +37,9 @@ int main(void) {
                 adiciona_recinto(arq_recinto);
                 break;
             case 2:
-                 printf("# Informe o nome do animal que sera removido:\n");
-                scanf(" %d", id_recinto);
-                if(remove_recinto(arq_recinto, id_recinto ) == 1) {
+                printf("# Informe a identificacao do recinto que sera removido:\n");
+                scanf("%d", &id_recinto);
+                if(remove_recinto(arq_recinto, id_recinto) == 1) {
                     printf("* Recinto removido com sucesso! *\n");
                 } else {
                     printf("* Recinto nao encontrado. Tente novamente! *\n");
