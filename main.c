@@ -42,7 +42,7 @@ int main(void) {
                 if(remove_recinto(arq_recinto, id_recinto) == 1) {
                     printf("* Recinto removido com sucesso! *\n");
                 } else {
-                    printf("* Recinto nao encontrado. Tente novamente! *\n");
+                    printf("* Recinto nao encontrado! Tente novamente. *\n");
                 }
                 break;
             case 3:
@@ -54,7 +54,7 @@ int main(void) {
                 if(remove_animal(arq_animal, nome_animal) == 1) {
                     printf("* Animal removido com sucesso! *\n");
                 } else {
-                    printf("* Animal nao encontrado. Tente novamente! *\n");
+                    printf("* Animal nao encontrado! Tente novamente. *\n");
                 }
                 break;
             case 5:
@@ -72,7 +72,7 @@ int main(void) {
                     imprime_dados_animal(resultado_busca);
                     printf("----------------------\n");
                 } else {
-                    printf("* Animal nao encontrado. Tente novamente! *\n");
+                    printf("* Animal nao encontrado! Tente novamente. *\n");
                 }
                 libera_lista_animais(lista_animais);
                 break;

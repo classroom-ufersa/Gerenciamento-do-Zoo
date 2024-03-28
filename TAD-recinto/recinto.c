@@ -92,16 +92,16 @@ void adiciona_recinto(char arquivo_nome[]){
     char horario[50];
     char animais_pre[50];
 
-    printf("----Adicione o recinto----\n");
+    printf("---- Insercao de recinto ----\n");
     printf("Informe a identificacao do recinto:\n ex:456\n");
     scanf("%d", &id);
     printf("Informe a capacidade maxima de animais do recinto:\n ex:80\n");
     scanf("%d", &capacidade);
-    printf("Informe o horario de visitas do recinto:\n ex: dez da manha as seis da tarde\n");
+    printf("Informe o horario de visitas do recinto:\n ex: 10:00 as 12:00\n");
     scanf(" %[^\n]", horario);
-    printf("Informe os animais que estao presentes no recinto:\n ex:seis ursos\n");
+    printf("Informe os animais que estao presentes no recinto:\n ex:6 ursos\n");
     scanf(" %[^\n]", animais_pre);
-    printf("--------------------------\n");
+    printf("-----------------------------\n");
 
     lista = insere_recinto_lista(lista, id, capacidade, horario, animais_pre);
     insere_recintos_arquivo (arquivo_nome, lista);
@@ -111,7 +111,7 @@ void adiciona_recinto(char arquivo_nome[]){
 }
 
 void imprime_dados_recinto(Recinto * lista) {
-    printf("========= Recintos =========\n");
+    printf("--------- Recintos ---------\n");
     if(lista == NULL) {
         printf("* Nenhum recinto encontrado *\n");
     }
@@ -125,7 +125,7 @@ void imprime_dados_recinto(Recinto * lista) {
         }
         lista = lista->prox_elemento;
     }
-    printf("============================\n");
+    printf("----------------------------\n");
 }
 
 int remove_recinto(char arquivo_nome[], int id_recinto) {

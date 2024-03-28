@@ -65,7 +65,7 @@ void insere_animais_arquivo(char nome_arquivo[], Animal * lista) {
         exit(1);
     }
     while(lista != NULL) {
-        fprintf(arquivo, "%s %s %d\n", lista->nome, lista->especie, lista->idade);
+        fprintf(arquivo, "%s\t%s\t%d\n", lista->nome, lista->especie, lista->idade);
         lista = lista->prox_elemento;
     }
 
@@ -173,9 +173,9 @@ void edita_dados_animal(char nome_arquivo[], char nome_animal[]) {
         lista = carrega_animais_arquivo(nome_arquivo);
         lista = insere_animal_lista(lista, novo_nome, nova_especie, nova_idade);
         insere_animais_arquivo(nome_arquivo, lista);
-        printf("* Dados atualizados! *\n");
+        printf("* Dados atualizados com sucesso! *\n");
     } else {
-        printf("* Animal nao encontrado! *\n");
+        printf("* Animal nao encontrado! Tente novamente. *\n");
     }
     libera_lista_animais(lista);
 }
