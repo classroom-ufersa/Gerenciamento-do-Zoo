@@ -50,7 +50,7 @@ Animal * carrega_animais_arquivo(char nome_arquivo[]) {
     char especie[50];
     int idade;
 
-    while(fscanf(arquivo, "%49s %49s %d", nome, especie, &idade) == 3) {
+    while(fscanf(arquivo, " %[^\t] %[^\t] %d", nome, especie, &idade) == 3) {
         lista = insere_animal_lista(lista, nome, especie, idade);
     }
 
@@ -90,9 +90,9 @@ void adiciona_animal(char nome_arquivo[]) {
 
     printf("---- Insercao de animal ----\n");
     printf("# Informe o nome do animal:\n");
-    scanf(" %49s", nome);
+    scanf(" %[^\n]", nome);
     printf("# Informe a especie do animal:\n");
-    scanf(" %49s", especie);
+    scanf(" %[^\n]", especie);
     printf("# Informe a idade do animal:\n");
     scanf("%d", &idade);
     printf("----------------------------\n");
@@ -164,9 +164,9 @@ void edita_dados_animal(char nome_arquivo[], char nome_animal[]) {
         libera_lista_animais(lista);
         printf("* Insira os novos dados do animal *\n");
         printf("# Nome: ");
-        scanf(" %49s", novo_nome);
+        scanf(" %[^\n]", novo_nome);
         printf("# Especie: ");
-        scanf(" %49s", nova_especie);
+        scanf(" %[^\n]", nova_especie);
         printf("# Idade: ");
         scanf("%d", &nova_idade);
         remove_animal(nome_arquivo, nome_animal);

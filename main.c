@@ -50,7 +50,7 @@ int main(void) {
                 break;
             case 4:
                 printf("# Informe o nome do animal que sera removido:\n");
-                scanf(" %49s", nome_animal);
+                scanf(" %[^\n]", nome_animal);
                 if(remove_animal(arq_animal, nome_animal) == 1) {
                     printf("* Animal removido com sucesso! *\n");
                 } else {
@@ -59,12 +59,12 @@ int main(void) {
                 break;
             case 5:
                 printf("# Informe o nome do animal para editar os seus dados:\n");
-                scanf(" %49s", nome_animal);
+                scanf(" %[^\n]", nome_animal);
                 edita_dados_animal(arq_animal, nome_animal);
                 break;
             case 6:
                 printf("# Informe o nome do animal para realizar a busca:\n");
-                scanf(" %49s", nome_animal);
+                scanf(" %[^\n]", nome_animal);
                 lista_animais = carrega_animais_arquivo(arq_animal);
                 resultado_busca = busca_animal(lista_animais, nome_animal);
                 if(resultado_busca != NULL) {
