@@ -1,14 +1,17 @@
 # Sistema de Gerenciamento de Zoológico
 
 ## Informações do Projeto
-  * Desenvolvedores
-  * Disciplina e Docente
-
+#### Desenvolvedores:
+  * Evelyn Cristina de Oliveira Gomes;
+  * Levítico Rimon Perez Andrade Alves.
+#### Disciplina e Docente:
+  Projeto desenvolvido na disciplina de Algoritmos e Estrutura de Dados I lecionada pela professora Dra. Rosana Cibely Batista Rego.
+    
 ## Visão Geral
-  * O Sistema de Gerenciamento de Zoológico é um programa feito em C que tem como objetivo ter o controle dos recintos e dos animais do Zoológico.
+  O Sistema de Gerenciamento de Zoológico é um programa feito em C que tem como objetivo ter o controle dos recintos e dos animais do Zoológico.
 
 ## Problemática
- * Projetar um sistema na Linguagem C para gerenciamento de um zoológico. O sistema precisa manipular recintos e animais.
+ Projetar um sistema na Linguagem C para gerenciamento de um zoológico. O sistema precisa manipular recintos e animais.
 
 ## Funcionalidades do Sistema
  ### Menu
@@ -77,6 +80,28 @@
 
 ### 3-Adicionar animal
    * Permite ao usuário adicionar um animal em que os campos de Nome, Espécie e Idade são preenchidos e armazenados.
+ 
+    void adiciona_animal(char nome_arquivo[]) {
+      Animal * lista = carrega_animais_arquivo(nome_arquivo);
+      char nome[50];
+      char especie[50];
+      int idade;
+
+      printf("---- Insercao de animal ----\n");
+      printf("# Informe o nome do animal:\n");
+      scanf(" %[^\n]", nome);
+      printf("# Informe a especie do animal:\n");
+      scanf(" %[^\n]", especie);
+      printf("# Informe a idade do animal:\n");
+      scanf("%d", &idade);
+      printf("----------------------------\n");
+
+      lista = insere_animal_lista(lista, nome, especie, idade);
+      insere_animais_arquivo(nome_arquivo, lista);
+      libera_lista_animais(lista);
+    
+      printf("* Insercao concluida! *\n");
+    }
     
 
 ### 4-Remover animal
@@ -113,6 +138,36 @@
     }
 ### 5-Editar informação de animal
    * Possibilita ao usuário a edição dos dados anteriormente preenchidos dos animais.
+
+    void edita_dados_animal(char nome_arquivo[], char nome_animal[]) {
+      Animal * lista = carrega_animais_arquivo(nome_arquivo);
+      Animal * resultado_busca = busca_animal(lista, nome_animal);
+      char novo_nome[50];
+      char nova_especie[50];
+      int nova_idade;
+
+      if(resultado_busca != NULL) {
+        printf("---- Dados atuais do animal ----\n");
+        imprime_dados_animal(resultado_busca);
+        printf("--------------------------------\n");
+        libera_lista_animais(lista);
+        printf("* Insira os novos dados do animal *\n");
+        printf("# Nome: ");
+        scanf(" %[^\n]", novo_nome);
+        printf("# Especie: ");
+        scanf(" %[^\n]", nova_especie);
+        printf("# Idade: ");
+        scanf("%d", &nova_idade);
+        remove_animal(nome_arquivo, nome_animal);
+        lista = carrega_animais_arquivo(nome_arquivo);
+        lista = insere_animal_lista(lista, novo_nome, nova_especie, nova_idade);
+        insere_animais_arquivo(nome_arquivo, lista);
+        printf("* Dados atualizados com sucesso! *\n");
+      } else {
+        printf("* Animal nao encontrado! Tente novamente. *\n");
+      }
+      libera_lista_animais(lista);
+    }
    
 ### 6-Buscar animal por nome
    * Oferece o preenchimento do nome do animal adicionado anteriormente em que após informado é exibido os dados daquele animal.
@@ -163,5 +218,12 @@
  ### Linguagem de Programação
    * C
 
- ### Métodos 
+ ### Métodos para desenvolvimento do programa
+ #### Os métodos principais utilizados para o desenvolvimento do programa que foram ensinados em sala foram:
+  * Ponteiros;
+  * Alocação Dinâmica;
+  * Struct;
+  * TAD;
+  * Arquivos;
+  * Lista Encadeada.
 
