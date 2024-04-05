@@ -18,7 +18,7 @@ void exibir_menu(void) {
 }
 
 int main(void) {
-    char opcao;
+    int opcao;
     char arq_recinto[] = "dados/recintos.txt";
     char arq_animal[] = "dados/animais.txt";
     char nome_animal[50];
@@ -33,10 +33,10 @@ int main(void) {
         scanf("%d", &opcao);
 
         switch(opcao) {
-            case '1':
+            case 1:
                 adiciona_recinto(arq_recinto);
                 break;
-            case '2':
+            case 2:
                 printf("# Informe a identificacao do recinto que sera removido:\n");
                 scanf("%d", &id_recinto);
                 if(remove_recinto(arq_recinto, id_recinto) == 1) {
@@ -45,10 +45,10 @@ int main(void) {
                     printf("* Recinto nao encontrado! Tente novamente. *\n");
                 }
                 break;
-            case '3':
+            case 3:
                 adiciona_animal(arq_animal);
                 break;
-            case '4':
+            case 4:
                 printf("# Informe o nome do animal que sera removido:\n");
                 scanf(" %[^\n]", nome_animal);
                 if(remove_animal(arq_animal, nome_animal) == 1) {
@@ -57,12 +57,12 @@ int main(void) {
                     printf("* Animal nao encontrado! Tente novamente. *\n");
                 }
                 break;
-            case '5':
+            case 5:
                 printf("# Informe o nome do animal para editar os seus dados:\n");
                 scanf(" %[^\n]", nome_animal);
                 edita_dados_animal(arq_animal, nome_animal);
                 break;
-            case '6':
+            case 6:
                 printf("# Informe o nome do animal para realizar a busca:\n");
                 scanf(" %[^\n]", nome_animal);
                 lista_animais = carrega_animais_arquivo(arq_animal);
@@ -76,12 +76,12 @@ int main(void) {
                 }
                 libera_lista_animais(lista_animais);
                 break;
-            case '7':
+            case 7:
                 lista_recintos = carrega_recintos_arquivo(arq_recinto);
                 imprime_dados_recinto(lista_recintos);
                 libera_lista_recintos(lista_recintos);
                 break;
-            case '8':
+            case 8:
                 printf("Programa de gerenciamento de zoologico encerrado!\n");
                 break;
             default:
