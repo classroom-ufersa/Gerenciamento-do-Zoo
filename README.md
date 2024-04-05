@@ -243,8 +243,8 @@
       break;
       
 ## Tecnologias e Métodos Utilizados no Programa
- ### Linguagem de Programação
-   * C
+ ### Linguagem de Programação:
+   ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 
  ### Métodos para desenvolvimento do programa
  #### Os métodos principais utilizados para o desenvolvimento do programa que foram ensinados em sala foram:
