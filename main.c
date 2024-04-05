@@ -38,11 +38,17 @@ int main(void) {
                 break;
             case 2:
                 printf("# Informe a identificacao do recinto que sera removido:\n");
-                scanf("%d", &id_recinto);
+                 while (1)
+                 if (scanf("%d", &id_recinto) == 1){
                 if(remove_recinto(arq_recinto, id_recinto) == 1) {
                     printf("* Recinto removido com sucesso! *\n");
                 } else {
                     printf("* Recinto nao encontrado! Tente novamente. *\n");
+                }
+                break;
+                } else {
+                   printf("Por favor, insira um numero inteiro valido para o ID que deseja remover:\n");
+                    while (getchar() != '\n'); 
                 }
                 break;
             case 3:
