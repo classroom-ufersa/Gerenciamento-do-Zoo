@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 struct recinto{
     int id;
@@ -85,8 +86,18 @@ void libera_lista_recintos(Recinto * lista) {
     }
 }
 
-void adiciona_recinto(char arquivo_nome[]){
-    Recinto * lista = carrega_recintos_arquivo(arquivo_nome);
+int contem_apenas_numeros(const char *str) {
+    while (*str) {
+        if (!isdigit(*str)) {
+            return 0;
+        }
+        str++;
+    }
+    return 1;
+}
+
+void adiciona_recinto(char arquivo_nome[]) {
+    Recinto *lista = carrega_recintos_arquivo(arquivo_nome);
     int id;
     int capacidade;
     char horario[50];
@@ -94,9 +105,27 @@ void adiciona_recinto(char arquivo_nome[]){
 
     printf("---- Insercao de recinto ----\n");
     printf("Informe a identificacao do recinto:\n ex:456\n");
-    scanf("%d", &id);
+
+    while (1) {
+        if (scanf("%d", &id) == 1) {
+            break;
+        } else {
+            printf("Por favor, insira um numero inteiro valido para o ID:\n");
+            while (getchar() != '\n'); 
+        }
+    }
+
     printf("Informe a capacidade maxima de animais do recinto:\n ex:80\n");
-    scanf("%d", &capacidade);
+
+    while (1) {
+        if (scanf("%d", &capacidade) == 1) {
+            break;
+        } else {
+            printf("Por favor, insira um numero inteiro valido para a capacidade:\n");
+            while (getchar() != '\n'); // Limpar o buffer de entrada
+        }
+    }
+
     printf("Informe o horario de visitas do recinto:\n ex: 10:00 as 12:00\n");
     scanf(" %[^\n]", horario);
     printf("Informe os animais que estao presentes no recinto:\n ex:6 ursos\n");
@@ -157,3 +186,4 @@ int remove_recinto(char arquivo_nome[], int id_recinto) {
     }
     return removido;
 }
+
