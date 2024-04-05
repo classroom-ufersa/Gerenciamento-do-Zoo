@@ -8,7 +8,7 @@
   Projeto desenvolvido na disciplina de Algoritmos e Estrutura de Dados I lecionada pela professora Dra. Rosana Cibely Batista Rego.
     
 ## Visão Geral
-  O Sistema de Gerenciamento de Zoológico é um programa feito em C que tem como objetivo ter o controle dos recintos e dos animais do Zoológico.
+  O Sistema de Gerenciamento de Zoológico é um programa feito em C que tem como objetivo ter o controle dos recintos e dos animais de um Zoológico.
 
 ## Problemática
  Projetar um sistema na Linguagem C para gerenciamento de um zoológico. O sistema precisa manipular recintos e animais.
@@ -16,7 +16,21 @@
 ## Funcionalidades do Sistema
  ### Menu
   * É exibido um menu com as opções de manipulação e controle dos recintos e animais, esse menu possui 8 opções.
-    
+
+        void exibir_menu(void) {
+        printf(
+          "======= MENU =======\n"
+          "1. Adicionar recinto\n"
+          "2. Remover recinto\n"
+          "3. Adicionar animal\n"
+          "4. Remover animal\n"
+          "5. Editar informacao de animal\n"
+          "6. Buscar animal por nome\n"
+          "7. Listar recintos e os animais presentes\n"
+          "8. Sair\n"
+          "====================\n"
+        );
+        }
 
 ### 1-Adicionar recinto
    * Permite ao usuário adicionar um recinto onde são preenchidos e armazenados os campos de Identificação do recinto, a Capacidade, os Horários de Visitas e os Animais Presentes.
@@ -45,6 +59,7 @@
 
       printf("* Recinto adicionado com sucesso! *\n");
       }
+      
 ### 2-Remover recinto
    * Permite que o usuário remova um recinto que foi adicionado anteriormente.  
    
@@ -103,7 +118,6 @@
       printf("* Insercao concluida! *\n");
     }
     
-
 ### 4-Remover animal
    * Permite que o usuário remova um animal que foi adicionado anteriormente.
     
@@ -136,6 +150,7 @@
     }
     return removido;
     }
+    
 ### 5-Editar informação de animal
    * Possibilita ao usuário a edição dos dados anteriormente preenchidos dos animais.
 
@@ -181,6 +196,7 @@
     }
     return lista;
     }
+    
 ### 7-Listar recintos e os animais presentes
   * Nessa opção são listados todos os recintos armazenados de forma ordenada por identificação com os seus respectivos dados informados.
 
@@ -214,6 +230,7 @@
     case 8:
       printf("Programa de gerenciamento de zoologico encerrado!\n");
       break;
+      
 ## Tecnologias e Métodos Utilizados no Programa
  ### Linguagem de Programação
    * C
