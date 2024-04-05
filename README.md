@@ -1,17 +1,28 @@
 # Sistema de Gerenciamento de Zoológico
 
+
+
 ## Informações do Projeto
 #### Desenvolvedores:
   * Evelyn Cristina de Oliveira Gomes;
   * Levítico Rimon Perez Andrade Alves.
 #### Disciplina e Docente:
   Projeto desenvolvido na disciplina de Algoritmos e Estrutura de Dados I lecionada pela professora Dra. Rosana Cibely Batista Rego.
-    
-## Visão Geral
-  O Sistema de Gerenciamento de Zoológico é um programa feito em C que tem como objetivo ter o controle dos recintos e dos animais de um Zoológico.
+#### Tópicos presentes no Arquivo:
+  * [Introdução](#Introdução)
+  * [Problemática](#Problemática)
+  * [Descrição](#Descrição)
+  * [Funcionalidades do Sistema](#Funcionalidadesdosistema)
+  * [Tecnologias e Métodos Utilizados no Programa](#Tecnologiasemetodosutilizadosnosistema)
+
+## Introdução
+  O Sistema de Gerenciamento de Zoológico é um programa feito com o objetivo de ter o controle de um Zoológico com base na gestão de seus recintos e animais, sendo um ambiente extenso e de difícil gerenciamento manual, o sistema de gerenciamento é crucial para uma maior facilidade tendo com ele o controle de seus recintos em relação a quantidade e capacidades de cada um e gerenciamento de seus animais, trazendo assim, uma enorme melhoria no funcionamento do Zoológico.
 
 ## Problemática
- Projetar um sistema na Linguagem C para gerenciamento de um zoológico. O sistema precisa manipular recintos e animais.
+ Projetar um sistema imlementado na Linguagem C, com intuito de facilitar e melhorar o gerenciamento de um Zoológico. O sistema conta com a manipulação de recintos e animais oferecendo diversas funcionalidades para garantir uma melhor organização dos dados do zoológico.
+
+## Descrição
+  O sistema foi implementado com duas TADs, uma para Recintos e uma para Animais.
 
 ## Funcionalidades do Sistema
  ### Menu
