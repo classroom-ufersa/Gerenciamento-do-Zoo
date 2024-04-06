@@ -103,34 +103,36 @@ void adiciona_recinto(char arquivo_nome[]) {
     char horario[50];
     char animais_pre[50];
 
-    printf("---- Insercao de recinto ----\n");
-    printf("Informe a identificacao do recinto:\n ex:456\n");
+    printf("------- Insercao de recinto -------\n");
+    printf("# Informe a identificacao do recinto:\n ex: 456\n");
 
     while (1) {
         if (scanf("%d", &id) == 1) {
+            while(getchar() != '\n');
             break;
         } else {
-            printf("Por favor, insira um numero inteiro valido para o ID:\n");
+            printf("# Erro! Por favor, insira apenas numeros inteiros para o ID:\n");
             while (getchar() != '\n'); 
         }
     }
 
-    printf("Informe a capacidade maxima de animais do recinto:\n ex:80\n");
+    printf("# Informe a capacidade maxima de animais do recinto:\n ex: 80\n");
 
     while (1) {
         if (scanf("%d", &capacidade) == 1) {
+            while(getchar() != '\n');
             break;
         } else {
-            printf("Por favor, insira um numero inteiro valido para a capacidade:\n");
+            printf("# Erro! Por favor, insira apenas numeros inteiros para a capacidade:\n");
             while (getchar() != '\n'); // Limpar o buffer de entrada
         }
     }
 
-    printf("Informe o horario de visitas do recinto:\n ex: 10:00 as 12:00\n");
+    printf("# Informe o horario de visitas do recinto:\n ex: 10:00 as 12:00\n");
     scanf(" %[^\n]", horario);
-    printf("Informe os animais que estao presentes no recinto:\n ex:6 ursos\n");
+    printf("# Informe os animais que estao presentes no recinto:\n ex: 6 ursos\n");
     scanf(" %[^\n]", animais_pre);
-    printf("-----------------------------\n");
+    printf("-----------------------------------\n");
 
     lista = insere_recinto_lista(lista, id, capacidade, horario, animais_pre);
     insere_recintos_arquivo (arquivo_nome, lista);

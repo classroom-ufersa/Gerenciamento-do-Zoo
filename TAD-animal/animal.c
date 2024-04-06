@@ -94,14 +94,22 @@ void adiciona_animal(char nome_arquivo[]) {
     printf("# Informe a especie do animal:\n");
     scanf(" %[^\n]", especie);
     printf("# Informe a idade do animal:\n");
-    scanf("%d", &idade);
+    while(1) {
+        if(scanf("%d", &idade) == 1) {
+            while(getchar() != '\n');
+            break;
+        } else {
+            printf("# Erro! Por favor, insira apenas numeros inteiros para a idade:\n");
+            while(getchar() != '\n');
+        }
+    }
     printf("----------------------------\n");
 
     lista = insere_animal_lista(lista, nome, especie, idade);
     insere_animais_arquivo(nome_arquivo, lista);
     libera_lista_animais(lista);
     
-    printf("* Insercao concluida! *\n");
+    printf("* Animal adicionado com sucesso! *\n");
 }
 
 void imprime_dados_animal(Animal * dados) {
@@ -168,7 +176,15 @@ void edita_dados_animal(char nome_arquivo[], char nome_animal[]) {
         printf("# Especie: ");
         scanf(" %[^\n]", nova_especie);
         printf("# Idade: ");
-        scanf("%d", &nova_idade);
+        while(1) {
+            if(scanf("%d", &nova_idade) == 1) {
+                while(getchar() != '\n');
+                break;
+            } else {
+                printf("# Erro! Por favor, insira apenas numeros inteiros para a idade:\n");
+                while(getchar() != '\n');
+            }
+        }
         remove_animal(nome_arquivo, nome_animal);
         lista = carrega_animais_arquivo(nome_arquivo);
         lista = insere_animal_lista(lista, novo_nome, nova_especie, nova_idade);
