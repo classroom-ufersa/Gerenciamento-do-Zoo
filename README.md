@@ -19,7 +19,7 @@
   O Sistema de Gerenciamento de Zoológico é um programa feito com o objetivo de ter o controle de um Zoológico com base na gestão de seus recintos e animais, sendo um ambiente extenso e de difícil gerenciamento manual, o sistema de gerenciamento é crucial para uma maior facilidade tendo com ele o controle de seus recintos em relação a quantidade e capacidades de cada um e gerenciamento de seus animais, trazendo assim, uma enorme melhoria no funcionamento do Zoológico.
 
 ## Problemática
- Projetar um sistema imlementado na Linguagem C, com intuito de facilitar e melhorar o gerenciamento de um Zoológico. O sistema conta com a manipulação de recintos e animais oferecendo diversas funcionalidades para garantir uma melhor organização dos dados do zoológico.
+ Projetar um sistema implementado na Linguagem C, com intuito de facilitar e melhorar o gerenciamento de um Zoológico. O sistema conta com a manipulação de recintos e animais oferecendo diversas funcionalidades para garantir uma melhor organização dos dados do zoológico.
 
 ## Descrição
   O sistema foi implementado com duas TADs, uma para Recintos e uma para Animais.
@@ -46,30 +46,48 @@
 ### 1-Adicionar recinto
    * Permite ao usuário adicionar um recinto onde são preenchidos e armazenados os campos de Identificação do recinto, a Capacidade, os Horários de Visitas e os Animais Presentes.
  
-    void adiciona_recinto(char arquivo_nome[]){
-      Recinto * lista = carrega_recintos_arquivo(arquivo_nome);
-      int id;
-      int capacidade;
-      char horario[50];
-      char animais_pre[50];
-    
-      printf("---- Insercao de recinto ----\n");
-      printf("Informe a identificacao do recinto:\n ex:456\n");
-      scanf("%d", &id);
-      printf("Informe a capacidade maxima de animais do recinto:\n ex:80\n");
-      scanf("%d", &capacidade);
-      printf("Informe o horario de visitas do recinto:\n ex: 10:00 as 12:00\n");
-      scanf(" %[^\n]", horario);
-      printf("Informe os animais que estao presentes no recinto:\n ex:6 ursos\n");
-      scanf(" %[^\n]", animais_pre);
-      printf("-----------------------------\n");
+    void adiciona_recinto(char arquivo_nome[]) {
+    Recinto *lista = carrega_recintos_arquivo(arquivo_nome);
+    int id;
+    int capacidade;
+    char horario[50];
+    char animais_pre[50];
 
-      lista = insere_recinto_lista(lista, id, capacidade, horario, animais_pre);
-      insere_recintos_arquivo (arquivo_nome, lista);
-      libera_lista_recintos(lista);
+    printf("---- Insercao de recinto ----\n");
+    printf("Informe a identificacao do recinto:\n ex:456\n");
 
-      printf("* Recinto adicionado com sucesso! *\n");
-      }
+    while (1) {
+        if (scanf("%d", &id) == 1) {
+            break;
+        } else {
+            printf("Por favor, insira um numero inteiro valido para o ID:\n");
+            while (getchar() != '\n'); 
+        }
+    }
+
+    printf("Informe a capacidade maxima de animais do recinto:\n ex:80\n");
+
+    while (1) {
+        if (scanf("%d", &capacidade) == 1) {
+            break;
+        } else {
+            printf("Por favor, insira um numero inteiro valido para a capacidade:\n");
+            while (getchar() != '\n'); // Limpar o buffer de entrada
+        }
+    }
+
+    printf("Informe o horario de visitas do recinto:\n ex: 10:00 as 12:00\n");
+    scanf(" %[^\n]", horario);
+    printf("Informe os animais que estao presentes no recinto:\n ex:6 ursos\n");
+    scanf(" %[^\n]", animais_pre);
+    printf("-----------------------------\n");
+
+    lista = insere_recinto_lista(lista, id, capacidade, horario, animais_pre);
+    insere_recintos_arquivo (arquivo_nome, lista);
+    libera_lista_recintos(lista);
+
+    printf("* Recinto adicionado com sucesso! *\n");
+    }
       
 ### 2-Remover recinto
    * Permite que o usuário remova um recinto que foi adicionado anteriormente.  
