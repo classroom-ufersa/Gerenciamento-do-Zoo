@@ -124,7 +124,7 @@ void adiciona_recinto(char arquivo_nome[]) {
             break;
         } else {
             printf("# Erro! Por favor, insira apenas numeros inteiros para a capacidade:\n");
-            while (getchar() != '\n'); // Limpar o buffer de entrada
+            while (getchar() != '\n');
         }
     }
 
