@@ -4,10 +4,10 @@
 
 ## Informações do Projeto
 #### Desenvolvedores:
-  * Evelyn Cristina de Oliveira Gomes;
-  * Levítico Rimon Perez Andrade Alves.
+  * [Evelyn Cristina de Oliveira Gomes](https://github.com/EvelynAires)
+  * [Levítico Rimon Perez Andrade Alves](https://github.com/LEVEL303)
 #### Disciplina e Docente:
-  Projeto desenvolvido na disciplina de Algoritmos e Estrutura de Dados I lecionada pela professora Dra. Rosana Cibely Batista Rego.
+  * Projeto desenvolvido na disciplina de Algoritmos e Estrutura de Dados I lecionada pela professora Dra. Rosana Cibely Batista Rego.
 #### Tópicos presentes no Arquivo:
   * [Introdução](#Introdução)
   * [Problemática](#Problemática)
@@ -22,7 +22,7 @@
  Projetar um sistema implementado na Linguagem C, com intuito de facilitar e melhorar o gerenciamento de um Zoológico. O sistema conta com a manipulação de recintos e animais oferecendo diversas funcionalidades para garantir uma melhor organização dos dados do zoológico.
 
 ## Descrição
-  O sistema foi implementado com duas TADs, uma para Recintos e uma para Animais.
+  O sistema foi implementado com duas TADs, uma para Recintos e uma para Animais e nele foi usado principalmente listas encadeadas. Foi pensado e feito para ter a capacidade de adicionar e remover tanto recintos quanto animais, além de poder editar as informações dos animais cadastrados e poder realizar a busca por nome, conta também com a função de listar os recintos e suas informações como os animais presentes naquele recinto.
 
 ## Funcionalidades do Sistema
  ### Menu
@@ -53,50 +53,52 @@
     char horario[50];
     char animais_pre[50];
 
-    printf("---- Insercao de recinto ----\n");
-    printf("Informe a identificacao do recinto:\n ex:456\n");
+    printf("------- Insercao de recinto -------\n");
+    printf("# Informe a identificacao do recinto:\n ex: 456\n");
 
     while (1) {
         if (scanf("%d", &id) == 1) {
+            while(getchar() != '\n');
             break;
         } else {
-            printf("Por favor, insira um numero inteiro valido para o ID:\n");
+            printf("# Erro! Por favor, insira apenas numeros inteiros para o ID:\n");
             while (getchar() != '\n'); 
         }
     }
 
-    printf("Informe a capacidade maxima de animais do recinto:\n ex:80\n");
+    printf("# Informe a capacidade maxima de animais do recinto:\n ex: 80\n");
 
     while (1) {
         if (scanf("%d", &capacidade) == 1) {
+            while(getchar() != '\n');
             break;
         } else {
-            printf("Por favor, insira um numero inteiro valido para a capacidade:\n");
+            printf("# Erro! Por favor, insira apenas numeros inteiros para a capacidade:\n");
             while (getchar() != '\n'); // Limpar o buffer de entrada
         }
     }
 
-    printf("Informe o horario de visitas do recinto:\n ex: 10:00 as 12:00\n");
+    printf("# Informe o horario de visitas do recinto:\n ex: 10:00 as 12:00\n");
     scanf(" %[^\n]", horario);
-    printf("Informe os animais que estao presentes no recinto:\n ex:6 ursos\n");
+    printf("# Informe os animais que estao presentes no recinto:\n ex: 6 ursos\n");
     scanf(" %[^\n]", animais_pre);
-    printf("-----------------------------\n");
+    printf("-----------------------------------\n");
 
     lista = insere_recinto_lista(lista, id, capacidade, horario, animais_pre);
     insere_recintos_arquivo (arquivo_nome, lista);
     libera_lista_recintos(lista);
 
     printf("* Recinto adicionado com sucesso! *\n");
-    }
+}
       
 ### 2-Remover recinto
    * Permite que o usuário remova um recinto que foi adicionado anteriormente.  
    
     int remove_recinto(char arquivo_nome[], int id_recinto) {
-      Recinto * lista = carrega_recintos_arquivo(arquivo_nome);
-      Recinto * elemento_atual = lista;
-      Recinto * elemento_remover;
-      int removido = 0;
+    Recinto * lista = carrega_recintos_arquivo(arquivo_nome);
+    Recinto * elemento_atual = lista;
+    Recinto * elemento_remover;
+    int removido = 0;
 
     if(lista != NULL) {
         if(lista->id == id_recinto) {
@@ -122,39 +124,48 @@
     return removido;
     }
 
+
 ### 3-Adicionar animal
    * Permite ao usuário adicionar um animal em que os campos de Nome, Espécie e Idade são preenchidos e armazenados.
  
     void adiciona_animal(char nome_arquivo[]) {
-      Animal * lista = carrega_animais_arquivo(nome_arquivo);
-      char nome[50];
-      char especie[50];
-      int idade;
+    Animal * lista = carrega_animais_arquivo(nome_arquivo);
+    char nome[50];
+    char especie[50];
+    int idade;
 
-      printf("---- Insercao de animal ----\n");
-      printf("# Informe o nome do animal:\n");
-      scanf(" %[^\n]", nome);
-      printf("# Informe a especie do animal:\n");
-      scanf(" %[^\n]", especie);
-      printf("# Informe a idade do animal:\n");
-      scanf("%d", &idade);
-      printf("----------------------------\n");
-
-      lista = insere_animal_lista(lista, nome, especie, idade);
-      insere_animais_arquivo(nome_arquivo, lista);
-      libera_lista_animais(lista);
-    
-      printf("* Insercao concluida! *\n");
+    printf("---- Insercao de animal ----\n");
+    printf("# Informe o nome do animal:\n");
+    scanf(" %[^\n]", nome);
+    printf("# Informe a especie do animal:\n");
+    scanf(" %[^\n]", especie);
+    printf("# Informe a idade do animal:\n");
+    while(1) {
+        if(scanf("%d", &idade) == 1) {
+            while(getchar() != '\n');
+            break;
+        } else {
+            printf("# Erro! Por favor, insira apenas numeros inteiros para a idade:\n");
+            while(getchar() != '\n');
+        }
     }
+    printf("----------------------------\n");
+
+    lista = insere_animal_lista(lista, nome, especie, idade);
+    insere_animais_arquivo(nome_arquivo, lista);
+    libera_lista_animais(lista);
+    
+    printf("* Animal adicionado com sucesso! *\n");
+}
     
 ### 4-Remover animal
    * Permite que o usuário remova um animal que foi adicionado anteriormente.
     
     int remove_animal(char nome_arquivo[], char nome_animal[]) {
-      Animal * lista = carrega_animais_arquivo(nome_arquivo);
-      Animal * elemento_atual = lista;
-      Animal * elemento_remover;
-      int removido = 0;
+    Animal * lista = carrega_animais_arquivo(nome_arquivo);
+    Animal * elemento_atual = lista;
+    Animal * elemento_remover;
+    int removido = 0;
 
     if(lista != NULL) {
         if(strcmp(lista->nome, nome_animal) == 0){
@@ -184,13 +195,13 @@
    * Possibilita ao usuário a edição dos dados anteriormente preenchidos dos animais.
 
     void edita_dados_animal(char nome_arquivo[], char nome_animal[]) {
-      Animal * lista = carrega_animais_arquivo(nome_arquivo);
-      Animal * resultado_busca = busca_animal(lista, nome_animal);
-      char novo_nome[50];
-      char nova_especie[50];
-      int nova_idade;
+    Animal * lista = carrega_animais_arquivo(nome_arquivo);
+    Animal * resultado_busca = busca_animal(lista, nome_animal);
+    char novo_nome[50];
+    char nova_especie[50];
+    int nova_idade;
 
-      if(resultado_busca != NULL) {
+    if(resultado_busca != NULL) {
         printf("---- Dados atuais do animal ----\n");
         imprime_dados_animal(resultado_busca);
         printf("--------------------------------\n");
@@ -201,16 +212,24 @@
         printf("# Especie: ");
         scanf(" %[^\n]", nova_especie);
         printf("# Idade: ");
-        scanf("%d", &nova_idade);
+        while(1) {
+            if(scanf("%d", &nova_idade) == 1) {
+                while(getchar() != '\n');
+                break;
+            } else {
+                printf("# Erro! Por favor, insira apenas numeros inteiros para a idade:\n");
+                while(getchar() != '\n');
+            }
+        }
         remove_animal(nome_arquivo, nome_animal);
         lista = carrega_animais_arquivo(nome_arquivo);
         lista = insere_animal_lista(lista, novo_nome, nova_especie, nova_idade);
         insere_animais_arquivo(nome_arquivo, lista);
         printf("* Dados atualizados com sucesso! *\n");
-      } else {
+    } else {
         printf("* Animal nao encontrado! Tente novamente. *\n");
-      }
-      libera_lista_animais(lista);
+    }
+    libera_lista_animais(lista);
     }
    
 ### 6-Buscar animal por nome
@@ -232,20 +251,20 @@
         void imprime_dados_recinto(Recinto * lista) {
            printf("--------- Recintos ---------\n");
            if(lista == NULL) {
-           printf("* Nenhum recinto encontrado *\n");
+             printf("* Nenhum recinto encontrado *\n");
            }
            while(lista != NULL) {
-           printf("Id: %d\n", lista->id);
-           printf("Capacidade: %d\n", lista->capacidade);
-           printf("Horario: %s\n", lista->horario);
-           printf("Animais Presentes: %s\n", lista->animais_pre);
+             printf("Id: %d\n", lista->id);
+             printf("Capacidade: %d\n", lista->capacidade);
+             printf("Horario: %s\n", lista->horario);
+             printf("Animais Presentes: %s\n", lista->animais_pre);
            if(lista->prox_elemento != NULL) {
-           printf("\n");
+             printf("\n");
            }
-          lista = lista->prox_elemento;
-          }
-         printf("----------------------------\n");
-         }
+           lista = lista->prox_elemento;
+           }
+           printf("----------------------------\n");
+        }
     
 ### 8-Sair
    * Oferece a oportunidade de sair do programa, sendo essa a única opção que permite a saída.
@@ -253,8 +272,16 @@
     //Acontece um loop que enquanto a opção escolhida for diferente de 8, irá exibir o menu novamente
     while(opcao != 8){
         exibir_menu();
-        printf("# Escolha uma opcao do nosso menu: ");
-        scanf("%d", &opcao);
+        printf("# Escolha uma opcao do menu: ");
+        while(1) {
+            if(scanf("%d", &opcao) == 1) {
+                while(getchar() != '\n');
+                break;
+            } else {
+                printf("# Erro! Por favor, insira apenas numeros inteiros:\n");
+                while(getchar() != '\n');
+            }
+        }
     //Caso seja escolhida a oitava opção o programa será encerrado.
     case 8:
       printf("Programa de gerenciamento de zoologico encerrado!\n");
